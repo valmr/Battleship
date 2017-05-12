@@ -17,6 +17,8 @@ public class Game {
 	}
 	
 	public void runGame() {
+		
+		
 //		showGameSpecifiactions();
 //		
 //		showNumberOfRemainingShots();
@@ -24,38 +26,38 @@ public class Game {
 //		Coordinate shotCoordinates = getShotCoordinatesFromUser();
 	}
 	
-	private void setupGame() {
+	public void setupGame() {
 		// Destroyers
 		Set<Coordinate> coordinatesDestroyer1 = new HashSet<Coordinate>();
 		coordinatesDestroyer1.add(new Coordinate(1,1));
 		coordinatesDestroyer1.add(new Coordinate(2,1));
 		
 		Set<Coordinate> coordinatesDestroyer2 = new HashSet<Coordinate>();
-		coordinatesDestroyer1.add(new Coordinate(7,2));
-		coordinatesDestroyer1.add(new Coordinate(7,2));
+		coordinatesDestroyer2.add(new Coordinate(7,2));
+		coordinatesDestroyer2.add(new Coordinate(7,2));
 		
 		Set<Coordinate> coordinatesDestroyer3 = new HashSet<Coordinate>();
-		coordinatesDestroyer1.add(new Coordinate(5,8));
-		coordinatesDestroyer1.add(new Coordinate(6,8));
+		coordinatesDestroyer3.add(new Coordinate(5,8));
+		coordinatesDestroyer3.add(new Coordinate(6,8));
 		
 		// Cruisers
 		Set<Coordinate> coordinatesCruiser1 = new HashSet<Coordinate>();
-		coordinatesDestroyer1.add(new Coordinate(1,10));
-		coordinatesDestroyer1.add(new Coordinate(2,10));
-		coordinatesDestroyer1.add(new Coordinate(3,10));
+		coordinatesCruiser1.add(new Coordinate(1,10));
+		coordinatesCruiser1.add(new Coordinate(2,10));
+		coordinatesCruiser1.add(new Coordinate(3,10));
 		
 		Set<Coordinate> coordinatesCruiser2 = new HashSet<Coordinate>();
-		coordinatesDestroyer1.add(new Coordinate(3,3));
-		coordinatesDestroyer1.add(new Coordinate(3,4));
-		coordinatesDestroyer1.add(new Coordinate(3,5));
+		coordinatesCruiser2.add(new Coordinate(3,3));
+		coordinatesCruiser2.add(new Coordinate(3,4));
+		coordinatesCruiser2.add(new Coordinate(3,5));
 		
 		// Carriers
 		Set<Coordinate> coordinatesCarrier1 = new HashSet<Coordinate>();
-		coordinatesDestroyer1.add(new Coordinate(9,9));
-		coordinatesDestroyer1.add(new Coordinate(9,8));
-		coordinatesDestroyer1.add(new Coordinate(9,7));
-		coordinatesDestroyer1.add(new Coordinate(9,6));
-		coordinatesDestroyer1.add(new Coordinate(9,5));
+		coordinatesCarrier1.add(new Coordinate(9,9));
+		coordinatesCarrier1.add(new Coordinate(9,8));
+		coordinatesCarrier1.add(new Coordinate(9,7));
+		coordinatesCarrier1.add(new Coordinate(9,6));
+		coordinatesCarrier1.add(new Coordinate(9,5));
 		
 		Ship destroyer1 = new Ship(coordinatesDestroyer1);
 		Ship destroyer2 = new Ship(coordinatesDestroyer2);

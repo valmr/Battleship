@@ -25,7 +25,7 @@ public class Board {
 
 	public void addShip(Ship newShip){
 		if(hasNoOverlapWithOtherShips(newShip)){
-			this.addShip(newShip);
+			this.ships.add(newShip);
 		}
 		else {
 			System.out.println("ERROR: This ship overlaps with one of the other ships!");
