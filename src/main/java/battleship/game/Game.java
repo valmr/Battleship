@@ -27,18 +27,28 @@ public class Game {
 		while(true) {
 			shotCoordinates = getShotCoordinatesFromUser();
 			if(isShotWithinBoardLimits(shotCoordinates)) {
-				this.alreadyHitFields.add(shotCoordinates);
-				break;
+				if(!hasThisFieldAlreadyBeenShot(shotCoordinates)) {
+					this.alreadyHitFields.add(shotCoordinates);
+					break;
+				}
+				else {
+					System.out.println("This field has already been shot before...");
+				}				
 			}
 			else {
 				System.out.println("This shot is outside the board limits!");
-				System.out.println("Since I'm nice, I'll let you try again...");
 			}
+			
+			System.out.println("Since I'm nice, I'll let you try again...");
 		}
 		
 		
 	}
 	
+	private boolean hasThisFieldAlreadyBeenShot(Coordinate shotCoordinates) {
+		return this.alreadyHitFields.contains(shotCoordinates);
+	}
+
 	private boolean isShotWithinBoardLimits(Coordinate shotCoordinates) {
 		return (shotCoordinates.getxCoordinate() >= 1 && shotCoordinates.getxCoordinate() <= board.getxLength()) && 
 			   (shotCoordinates.getyCoordinate() >= 1 && shotCoordinates.getyCoordinate() <= board.getyLength());
