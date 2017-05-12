@@ -9,6 +9,7 @@ public class App {
 
 		Game game = new Game(10,10, 100);
 		game.setupGame();
+		game.runGame();
 	}
 
 }

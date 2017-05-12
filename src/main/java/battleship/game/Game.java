@@ -10,22 +10,40 @@ import battleship.gameparts.Ship;
 public class Game {
 	private Board board;
 	private int numberOfRemainingShots;
+	private Set<Coordinate> alreadyHitFields;
 	
 	public Game(int xLength, int yLength, int numberOfShots){
 		this.board = new Board(xLength, yLength);
 		this.numberOfRemainingShots = numberOfShots;
+		this.alreadyHitFields = new HashSet<Coordinate>();
 	}
 	
-	public void runGame() {
+	public void runGame() {		
+		showGameSpecifiactions();
+		
+		showNumberOfRemainingShots();
+		
+		Coordinate shotCoordinates = null;
+		while(true) {
+			shotCoordinates = getShotCoordinatesFromUser();
+			if(isShotWithinBoardLimits(shotCoordinates)) {
+				this.alreadyHitFields.add(shotCoordinates);
+				break;
+			}
+			else {
+				System.out.println("This shot is outside the board limits!");
+				System.out.println("Since I'm nice, I'll let you try again...");
+			}
+		}
 		
 		
-//		showGameSpecifiactions();
-//		
-//		showNumberOfRemainingShots();
-//		
-//		Coordinate shotCoordinates = getShotCoordinatesFromUser();
 	}
 	
+	private boolean isShotWithinBoardLimits(Coordinate shotCoordinates) {
+		return (shotCoordinates.getxCoordinate() >= 1 && shotCoordinates.getxCoordinate() <= board.getxLength()) && 
+			   (shotCoordinates.getyCoordinate() >= 1 && shotCoordinates.getyCoordinate() <= board.getyLength());
+	}
+
 	public void setupGame() {
 		// Destroyers
 		Set<Coordinate> coordinatesDestroyer1 = new HashSet<Coordinate>();
@@ -75,11 +93,23 @@ public class Game {
 	}
 
 	private Coordinate getShotCoordinatesFromUser() {
-		return null;
+		
+		String input = null;
+		
+		System.out.print("Enter the x coordinate of your shot: ");
+		int xCoordinateOfShot = new java.util.Scanner(System.in).nextInt();
+		
+		System.out.print("Enter the y coordinate of your shot: ");		
+		int yCoordinateOfShot = new java.util.Scanner(System.in).nextInt();
+		
+		return new Coordinate(xCoordinateOfShot, yCoordinateOfShot);
 	}
 
 	private void showNumberOfRemainingShots() {
-		System.out.println("You have " + this.numberOfRemainingShots + " shots remaining!");		
+		if(this.numberOfRemainingShots > 1)
+			System.out.println("You still have " + this.numberOfRemainingShots + " shots.");
+		else if(this.numberOfRemainingShots == 1)
+			System.out.println("This is your last shot, good luck!");
 	}
 
 	private void showGameSpecifiactions() {
