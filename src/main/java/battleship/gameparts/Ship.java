@@ -22,6 +22,20 @@ public class Ship {
 		}
 	}
 	
+	public boolean checkIfContainsTheseCoordinates(Coordinate coordinates) {
+		boolean coordinatesContained = false;
+		
+		for(Coordinate shipCoordinate : this.coordinates) {
+			if(shipCoordinate.getxCoordinate() == coordinates.getxCoordinate() &&
+			   shipCoordinate.getyCoordinate() == coordinates.getyCoordinate() ) {
+				coordinatesContained = true;
+				break;
+			}
+		}
+		
+		return coordinatesContained;
+	}
+	
 	public void receiveHit(){
 		System.out.println("You have hit a ship!");
 		if(!isDestroyed()){
@@ -33,7 +47,7 @@ public class Ship {
 	}
 
 	private void destroy() {
-		System.out.println("Boom! This ship has been destroyed!");
+		System.out.println("BOOM! This ship has been destroyed!");
 		this.isDestroyed = true;
 	}
 

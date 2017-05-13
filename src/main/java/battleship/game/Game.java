@@ -48,8 +48,6 @@ public class Game {
 				Ship hitShip = getHitShip(shotCoordinates);
 				hitShip.receiveHit();
 				
-				System.out.println("You've hit a ship!");
-				
 				if(areAllShipsDestroyed()){
 					showGloriousVictory();
 					return;
@@ -90,7 +88,7 @@ public class Game {
 		Ship hitShip = null;
 		
 		for(Ship ship : this.board.getShips()) {
-			if(ship.getCoordinates().contains(shotCoordinates)) {
+			if(ship.checkIfContainsTheseCoordinates(shotCoordinates)) {
 				hitShip = ship;
 				break;
 			}
@@ -100,9 +98,10 @@ public class Game {
 	}
 
 	private boolean isAShipBeingHitByTheUsersShot(Coordinate shotCoordinates) {
+		
 		boolean isAShipHit = false;
 		for(Ship ship : this.board.getShips()) {
-			if(ship.getCoordinates().contains(shotCoordinates)) {
+			if(ship.checkIfContainsTheseCoordinates(shotCoordinates)) {
 				isAShipHit = true;
 				break;
 			}
@@ -129,7 +128,7 @@ public class Game {
 		this.board.addShip(new Ship(coordinatesDestroyer1));
 		
 		Set<Coordinate> coordinatesDestroyer2 = new HashSet<Coordinate>();
-		coordinatesDestroyer2.add(new Coordinate(7,2));
+		coordinatesDestroyer2.add(new Coordinate(7,1));
 		coordinatesDestroyer2.add(new Coordinate(7,2));
 		
 		this.board.addShip(new Ship(coordinatesDestroyer2));
@@ -163,21 +162,7 @@ public class Game {
 		coordinatesCarrier1.add(new Coordinate(9,6));
 		coordinatesCarrier1.add(new Coordinate(9,5));
 		
-		this.board.addShip(new Ship(coordinatesCarrier1));	
-		
-//		Ship destroyer1 = new Ship(coordinatesDestroyer1);
-//		Ship destroyer2 = new Ship(coordinatesDestroyer2);
-//		Ship destroyer3 = new Ship(coordinatesDestroyer3);
-//		Ship cruiser1   = new Ship(coordinatesCruiser1);
-//		Ship cruiser2   = new Ship(coordinatesCruiser2);
-//		Ship carrier1   = new Ship(coordinatesCarrier1);
-		
-//		this.board.addShip(destroyer1);
-//		this.board.addShip(destroyer2);
-//		this.board.addShip(destroyer3);
-//		this.board.addShip(cruiser1);
-//		this.board.addShip(cruiser2);
-//		this.board.addShip(carrier1);		
+		this.board.addShip(new Ship(coordinatesCarrier1));
 	}
 
 	private Coordinate getShotCoordinatesFromUser() {
