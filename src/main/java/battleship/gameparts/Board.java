@@ -33,7 +33,7 @@ public class Board {
 	}
 
 	private boolean hasNoOverlapWithOtherShips(Ship newShip) {		
-		boolean noOverlapWithOtherShips = true;		
+		boolean noOverlapWithOtherShips = true;
 		for(Ship ship : this.ships){
 			if(ship.getCoordinates().contains(newShip.getCoordinates())){
 				noOverlapWithOtherShips = false;
@@ -55,8 +55,11 @@ public class Board {
 	public Set<Ship> getShips() {
 		return ships;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Board [xLength=" + xLength + ", yLength=" + yLength + ", ships=" + ships + "]";
+	}
 }
 
 

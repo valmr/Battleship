@@ -119,19 +119,26 @@ public class Game {
 			   (shotCoordinates.getyCoordinate() >= 1 && shotCoordinates.getyCoordinate() <= board.getyLength());
 	}
 
-	public void setupGame() {
+	public void createAndPlaceShips() {
+		
 		// Destroyers
 		Set<Coordinate> coordinatesDestroyer1 = new HashSet<Coordinate>();
 		coordinatesDestroyer1.add(new Coordinate(1,1));
 		coordinatesDestroyer1.add(new Coordinate(2,1));
 		
+		this.board.addShip(new Ship(coordinatesDestroyer1));
+		
 		Set<Coordinate> coordinatesDestroyer2 = new HashSet<Coordinate>();
 		coordinatesDestroyer2.add(new Coordinate(7,2));
 		coordinatesDestroyer2.add(new Coordinate(7,2));
 		
+		this.board.addShip(new Ship(coordinatesDestroyer2));
+		
 		Set<Coordinate> coordinatesDestroyer3 = new HashSet<Coordinate>();
 		coordinatesDestroyer3.add(new Coordinate(5,8));
 		coordinatesDestroyer3.add(new Coordinate(6,8));
+		
+		this.board.addShip(new Ship(coordinatesDestroyer3));
 		
 		// Cruisers
 		Set<Coordinate> coordinatesCruiser1 = new HashSet<Coordinate>();
@@ -139,10 +146,14 @@ public class Game {
 		coordinatesCruiser1.add(new Coordinate(2,10));
 		coordinatesCruiser1.add(new Coordinate(3,10));
 		
+		this.board.addShip(new Ship(coordinatesCruiser1));
+		
 		Set<Coordinate> coordinatesCruiser2 = new HashSet<Coordinate>();
 		coordinatesCruiser2.add(new Coordinate(3,3));
 		coordinatesCruiser2.add(new Coordinate(3,4));
 		coordinatesCruiser2.add(new Coordinate(3,5));
+		
+		this.board.addShip(new Ship(coordinatesCruiser2));
 		
 		// Carriers
 		Set<Coordinate> coordinatesCarrier1 = new HashSet<Coordinate>();
@@ -152,19 +163,21 @@ public class Game {
 		coordinatesCarrier1.add(new Coordinate(9,6));
 		coordinatesCarrier1.add(new Coordinate(9,5));
 		
-		Ship destroyer1 = new Ship(coordinatesDestroyer1);
-		Ship destroyer2 = new Ship(coordinatesDestroyer2);
-		Ship destroyer3 = new Ship(coordinatesDestroyer3);
-		Ship cruiser1   = new Ship(coordinatesCruiser1);
-		Ship cruiser2   = new Ship(coordinatesCruiser2);
-		Ship carrier1   = new Ship(coordinatesCarrier1);
+		this.board.addShip(new Ship(coordinatesCarrier1));	
 		
-		this.board.addShip(destroyer1);
-		this.board.addShip(destroyer2);
-		this.board.addShip(destroyer3);
-		this.board.addShip(cruiser1);
-		this.board.addShip(cruiser2);
-		this.board.addShip(carrier1);		
+//		Ship destroyer1 = new Ship(coordinatesDestroyer1);
+//		Ship destroyer2 = new Ship(coordinatesDestroyer2);
+//		Ship destroyer3 = new Ship(coordinatesDestroyer3);
+//		Ship cruiser1   = new Ship(coordinatesCruiser1);
+//		Ship cruiser2   = new Ship(coordinatesCruiser2);
+//		Ship carrier1   = new Ship(coordinatesCarrier1);
+		
+//		this.board.addShip(destroyer1);
+//		this.board.addShip(destroyer2);
+//		this.board.addShip(destroyer3);
+//		this.board.addShip(cruiser1);
+//		this.board.addShip(cruiser2);
+//		this.board.addShip(carrier1);		
 	}
 
 	private Coordinate getShotCoordinatesFromUser() {

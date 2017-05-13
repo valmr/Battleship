@@ -51,5 +51,33 @@ public class Ship {
 
 	public boolean isDestroyed() {
 		return isDestroyed;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Ship [coordinates=" + coordinates + ", length=" + length + ", numberOfHits=" + numberOfHits
+				+ ", isDestroyed=" + isDestroyed + "]";
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

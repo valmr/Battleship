@@ -16,5 +16,9 @@ public class Coordinate {
 	public int getyCoordinate() {
 		return yCoordinate;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Coordinate [xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + "]";
+	}	
 }
