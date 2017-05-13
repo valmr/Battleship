@@ -21,30 +21,95 @@ public class Game {
 	public void runGame() {		
 		showGameSpecifiactions();
 		
-		showNumberOfRemainingShots();
+		for( ; this.numberOfRemainingShots > 0; this.numberOfRemainingShots--) {
 		
-		Coordinate shotCoordinates = null;
-		while(true) {
-			shotCoordinates = getShotCoordinatesFromUser();
-			if(isShotWithinBoardLimits(shotCoordinates)) {
-				if(!hasThisFieldAlreadyBeenShot(shotCoordinates)) {
-					this.alreadyHitFields.add(shotCoordinates);
-					break;
+			showNumberOfRemainingShots();
+			
+			Coordinate shotCoordinates = null;
+			while(true) {
+				shotCoordinates = getShotCoordinatesFromUser();
+				if(isShotWithinBoardLimits(shotCoordinates)) {
+					if(!hasThisFieldAlreadyBeenShot(shotCoordinates)) {
+						this.alreadyHitFields.add(shotCoordinates);
+						break;
+					}
+					else {
+						System.out.println("This field has already been shot before...");
+					}				
 				}
 				else {
-					System.out.println("This field has already been shot before...");
-				}				
-			}
-			else {
-				System.out.println("This shot is outside the board limits!");
+					System.out.println("This shot is outside the board limits!");
+				}
+				
+				System.out.println("Since I'm nice, I'll let you try again...");
 			}
 			
-			System.out.println("Since I'm nice, I'll let you try again...");
+			if(isAShipBeingHitByTheUsersShot(shotCoordinates)) {
+				Ship hitShip = getHitShip(shotCoordinates);
+				hitShip.receiveHit();
+				
+				System.out.println("You've hit a ship!");
+				
+				if(areAllShipsDestroyed()){
+					showGloriousVictory();
+					return;
+				}
+			}
+			else {
+				System.out.println("You missed!");
+			}
+		
 		}
 		
-		
+		showDefeat();		
 	}
 	
+	private void showDefeat() {		
+		System.out.println("You missed your last shot!");
+		System.out.println("You lose, loser! Try harder next time, or just get a life...");		
+	}
+
+	private void showGloriousVictory() {
+		System.out.println("Congratulations! You have destroyed all the ships!");
+		System.out.println("You are the glorious winner!");
+	}
+
+	private boolean areAllShipsDestroyed() {
+		
+		boolean allShipsDestroyed = true;
+		
+		for(Ship ship : this.board.getShips()) {
+			allShipsDestroyed = ship.isDestroyed() && allShipsDestroyed;
+		}
+		
+		return allShipsDestroyed;
+	}
+
+	private Ship getHitShip(Coordinate shotCoordinates) {
+		
+		Ship hitShip = null;
+		
+		for(Ship ship : this.board.getShips()) {
+			if(ship.getCoordinates().contains(shotCoordinates)) {
+				hitShip = ship;
+				break;
+			}
+		}
+		
+		return hitShip;
+	}
+
+	private boolean isAShipBeingHitByTheUsersShot(Coordinate shotCoordinates) {
+		boolean isAShipHit = false;
+		for(Ship ship : this.board.getShips()) {
+			if(ship.getCoordinates().contains(shotCoordinates)) {
+				isAShipHit = true;
+				break;
+			}
+		}
+		return isAShipHit;
+	}
+
 	private boolean hasThisFieldAlreadyBeenShot(Coordinate shotCoordinates) {
 		return this.alreadyHitFields.contains(shotCoordinates);
 	}
@@ -103,8 +168,6 @@ public class Game {
 	}
 
 	private Coordinate getShotCoordinatesFromUser() {
-		
-		String input = null;
 		
 		System.out.print("Enter the x coordinate of your shot: ");
 		int xCoordinateOfShot = new java.util.Scanner(System.in).nextInt();

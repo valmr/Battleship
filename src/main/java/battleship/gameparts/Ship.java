@@ -23,11 +23,18 @@ public class Ship {
 	}
 	
 	public void receiveHit(){
+		System.out.println("You have hit a ship!");
 		if(!isDestroyed()){
-			this.numberOfHits--;
-			if(this.numberOfHits == 0)
-				this.isDestroyed = true;
+			this.numberOfHits++;
+			if(this.numberOfHits == this.length) {
+				destroy();
+			}
 		}
+	}
+
+	private void destroy() {
+		System.out.println("Boom! This ship has been destroyed!");
+		this.isDestroyed = true;
 	}
 
 	public Set<Coordinate> getCoordinates() {
