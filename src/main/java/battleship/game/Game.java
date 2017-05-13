@@ -45,8 +45,7 @@ public class Game {
 			}
 			
 			if(isAShipBeingHitByTheUsersShot(shotCoordinates)) {
-				Ship hitShip = getHitShip(shotCoordinates);
-				hitShip.receiveHit();
+				getHitShip(shotCoordinates).receiveHit();
 				
 				if(areAllShipsDestroyed()){
 					showGloriousVictory();
@@ -63,8 +62,8 @@ public class Game {
 	}
 	
 	private void showDefeat() {		
-		System.out.println("You missed your last shot!");
-		System.out.println("You lose, loser! Try harder next time, or just get a life...");		
+		System.out.println("You used your last shot!");
+		System.out.println("You lose, loser! Try harder next time, or just get a life...");
 	}
 
 	private void showGloriousVictory() {
@@ -88,7 +87,7 @@ public class Game {
 		Ship hitShip = null;
 		
 		for(Ship ship : this.board.getShips()) {
-			if(ship.checkIfContainsTheseCoordinates(shotCoordinates)) {
+			if(Coordinate.checkIfCoordinatesAreContainedInThisCollection(ship.getCoordinates(), shotCoordinates)) {
 				hitShip = ship;
 				break;
 			}
@@ -101,7 +100,7 @@ public class Game {
 		
 		boolean isAShipHit = false;
 		for(Ship ship : this.board.getShips()) {
-			if(ship.checkIfContainsTheseCoordinates(shotCoordinates)) {
+			if(Coordinate.checkIfCoordinatesAreContainedInThisCollection(ship.getCoordinates(), shotCoordinates)) {
 				isAShipHit = true;
 				break;
 			}
@@ -110,7 +109,7 @@ public class Game {
 	}
 
 	private boolean hasThisFieldAlreadyBeenShot(Coordinate shotCoordinates) {
-		return this.alreadyHitFields.contains(shotCoordinates);
+		return Coordinate.checkIfCoordinatesAreContainedInThisCollection(this.alreadyHitFields, shotCoordinates);
 	}
 
 	private boolean isShotWithinBoardLimits(Coordinate shotCoordinates) {
@@ -195,7 +194,5 @@ public class Game {
 
 	public int getNumberOfRemainingShots() {
 		return numberOfRemainingShots;
-	}
-	
-	
+	}	
 }
