@@ -85,8 +85,6 @@ public class Ship {
 		return "Ship [coordinates=" + coordinates + ", length=" + length + ", numberOfHits=" + numberOfHits
 				+ ", isDestroyed=" + isDestroyed + "]";
 	}
-	
-	
 }
 
 
