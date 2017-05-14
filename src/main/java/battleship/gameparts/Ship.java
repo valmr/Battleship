@@ -1,5 +1,6 @@
 package battleship.gameparts;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import battleship.coordinates.Coordinate;
@@ -11,8 +12,9 @@ public class Ship {
 	private boolean isDestroyed;
 	
 	public Ship(Set<Coordinate> coordinates){
+		this.coordinates = new HashSet<Coordinate>();
 		if(coordinates != null && coordinates.size() > 0){
-			this.coordinates = coordinates;
+			addCoordinates(coordinates);
 			this.length = coordinates.size();
 			this.numberOfHits = 0;
 			this.isDestroyed = false;
@@ -22,6 +24,17 @@ public class Ship {
 		}
 	}
 	
+	private void addCoordinates(Set<Coordinate> newCoordinates) {
+		for(Coordinate newCoordinate : newCoordinates ) {
+			if(Coordinate.checkIfCoordinatesAreContainedInThisCollection(this.coordinates, newCoordinate)) {
+				System.out.println("ERROR: This coordinate is already contained in this ship!");
+			}
+			else {
+				this.coordinates.add(newCoordinate);
+			}
+		}
+	}
+
 	public boolean checkIfContainsTheseCoordinates(Coordinate coordinates) {
 		boolean coordinatesContained = false;
 		

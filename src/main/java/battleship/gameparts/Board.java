@@ -3,6 +3,8 @@ package battleship.gameparts;
 import java.util.HashSet;
 import java.util.Set;
 
+import battleship.coordinates.Coordinate;
+
 public class Board {
 	private int xLength;
 	private int yLength;
@@ -32,14 +34,24 @@ public class Board {
 		}
 	}
 
-	private boolean hasNoOverlapWithOtherShips(Ship newShip) {		
+	private boolean hasNoOverlapWithOtherShips(Ship newShip) {
 		boolean noOverlapWithOtherShips = true;
-		for(Ship ship : this.ships){
-			if(ship.getCoordinates().contains(newShip.getCoordinates())){
-				noOverlapWithOtherShips = false;
-				break;
+		
+		for(Coordinate newShipCoordinate : newShip.getCoordinates()) {
+			for(Ship alreadyPlacedShip : this.ships) {
+				if(Coordinate.checkIfCoordinatesAreContainedInThisCollection(alreadyPlacedShip.getCoordinates(), newShipCoordinate)) {
+					noOverlapWithOtherShips = false;
+					break;
+				}
 			}
 		}
+				
+//		for(Ship ship : this.ships){			
+//			if(ship.getCoordinates().contains(newShip.getCoordinates())){
+//				noOverlapWithOtherShips = false;
+//				break;
+//			}
+//		}
 		
 		return noOverlapWithOtherShips;
 	}
